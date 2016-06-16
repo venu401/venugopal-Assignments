@@ -1,0 +1,47 @@
+
+
+	import java.util.*;
+
+	public class ListDemo {
+
+	  public static void main( String [] args ) {
+
+	    // Create a list called myList
+	    List<String> myList = new ArrayList<String>();
+
+	    // Ensure that this set contains an interesting selection of fruit 
+	    String fruit1 = "pear", fruit2 = "banana", fruit3 = "tangerine",
+	                            fruit4 = "strawberry", fruit5 = "blackberry";
+	    myList.add( fruit1 );
+	    myList.add( fruit2 );
+	    myList.add( fruit3 );
+	    myList.add( fruit4 );
+	    myList.add( fruit5 );
+
+		Iterator<String> i = myList.iterator();
+		
+		  System.out.println( "elements are (in order of insertion):" );
+
+		while(i.hasNext())
+		  System.out.println( i.next());
+
+	  ListIterator<String> li = myList.listIterator(myList.size());
+		
+		  System.out.println( "elements are (in reverse order of insertion):" );
+
+		while(li.hasPrevious())
+		  System.out.println( li.previous());
+
+
+		myList.add(3, fruit2);
+
+		i = myList.iterator();
+
+		
+		  System.out.println( "second banana added; elements are:" );
+
+		while(i.hasNext())
+		  System.out.println( i.next());
+
+	  }
+	}

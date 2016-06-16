@@ -1,0 +1,130 @@
+import java.util.Scanner;
+
+public class PileOfChipsGame {
+	public static void main(String[] args) {
+		char contineForNextGame = 'n';
+		do {
+			// store name of player
+			String[] player = new String[2];
+			System.out.print("What is the name of the first player?:");
+			Scanner sc = new Scanner(System.in);
+			player[0] = sc.next();
+			System.out.print("What is the name of the second player?:");
+			player[1] = sc.next();
+			// check for equality of both name
+			do {
+				if (player[0].equals(player[1])) {
+					System.out.println("Both players cannot be named " + player[0]);
+					System.out.print("Enter a different name:");
+					player[1] = sc.next();
+				} else {
+					break;
+				}
+
+			} while (true);
+
+			System.out.print("How many chips does the initial pile contain?:");
+			int pileOfClips = sc.nextInt();
+			do {
+				if (pileOfClips < 3) {
+					System.out.println("You have to start with at least 3 chips.");
+				} else if (pileOfClips % 2 == 0) {
+					System.out.println("You have to start with an odd number of chips.");
+				} else {
+					break;
+				}
+				System.out.print("Choose another number:");
+				pileOfClips = sc.nextInt();
+			} while (true);
+
+			// store chips for each player
+			int[] playerChips = { 0, 0 };
+
+			// first turn
+			int turn = 1;
+			while (pileOfClips != 0) {
+				System.out.println(" * * * * * * * * * * * * * * * * * * * * * * * * * * * ");
+				System.out.println(player[0] + " has " + playerChips[0] + " chips. " + player[1] + " has "
+						+ playerChips[1] + " chips.");
+				switch (turn) {
+				case 1:
+					System.out.println("It is your turn, " + player[0] + ". ");
+
+					System.out.println("There are " + pileOfClips + " chips remaining. ");
+					// calculate max chips player can remove
+					int canRemove = (int) pileOfClips / 2;
+					// for pileOfClips=1 canRemove=1
+					if (canRemove == 0)
+						canRemove = 1;
+					System.out.println("You may take any number of chips from 1 to " + canRemove);
+					System.out.print("How many will you take, " + player[0] + "?:");
+					// store on of chips user want to remove
+					int noOfRemove = sc.nextInt();
+					do {
+						// check input
+						if (noOfRemove > canRemove) {
+							System.out.println("Illegal move: you may not take more than " + canRemove + " chips.");
+						} else if (noOfRemove == 0) {
+							System.out.println("llegal move: you must take at least one chip");
+						} else if ((pileOfClips - noOfRemove) < 0) {
+							System.out.println("There is no enough chipls in pile");
+						} else {
+							pileOfClips -= noOfRemove;
+							playerChips[0] += noOfRemove;
+							break;
+						}
+						System.out.print("How many will you take, " + player[0] + "?:");
+						noOfRemove = sc.nextInt();
+					} while (true);
+					// change turn
+					turn = 2;
+					break;
+				case 2:
+					// smly for second player
+					System.out.println("It is your turn, " + player[1] + ". ");
+
+					System.out.println("There are " + pileOfClips + " chips remaining. ");
+					// calculate max chips player can remove
+					int canRemove1 = (int) pileOfClips / 2;
+					// for pileOfClips=1 canRemove=1
+					if (canRemove1 == 0)
+						canRemove1 = 1;
+					System.out.println("You may take any number of chips from 1 to " + canRemove1);
+					System.out.print("How many will you take, " + player[1] + "?:");
+					// store on of chips user want to remove
+					int noOfRemove1 = sc.nextInt();
+					do {
+						// check input
+						if (noOfRemove1 > canRemove1) {
+							System.out.println("Illegal move: you may not take more than " + canRemove1 + " chips.");
+						} else if (noOfRemove1 == 0) {
+							System.out.println("llegal move: you must take at least one chip");
+						} else if ((pileOfClips - noOfRemove1) < 0) {
+							System.out.println("There is no enough chipls in pile");
+						} else {
+							pileOfClips -= noOfRemove1;
+							playerChips[1] += noOfRemove1;
+							break;
+						}
+						System.out.print("How many will you take, " + player[1] + "?:");
+						noOfRemove1 = sc.nextInt();
+					} while (true);
+					turn = 1;
+					break;
+				}
+			}
+			System.out.println(player[0] + " has " + playerChips[0] + " chips. " + player[1] + " has " + playerChips[1]
+					+ " chips.");
+			if (playerChips[0] % 2 == 0) {
+				System.out.println("Congrats, " + player[0] + ", You win!!");
+			} else {
+				System.out.println("Congrats, " + player[1] + ", You win!!");
+			}
+
+			System.out.println("* * * * * * * * * * * * * * * * * * * * * * * * * * *");
+			System.out.print("Do you want to play again(y/n):");
+			contineForNextGame = sc.next().charAt(0);
+		} while (contineForNextGame == 'Y' || contineForNextGame == 'y');
+	}
+}
+

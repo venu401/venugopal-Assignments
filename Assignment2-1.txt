@@ -1,0 +1,50 @@
+
+
+	import java.util.*;
+
+	public class SetDemo1 {
+
+	  public static void main( String [] args ) {
+
+	    // Create a set called mySet
+	    Set<String> mySet = new HashSet<String>();
+
+	    //  set contains an interesting selection of fruit 
+	    String fruit1 = "pear", fruit2 = "banana", fruit3 = "tangerine",
+	                            fruit4 = "strawberry", fruit5 = "blackberry";
+	    mySet.add( fruit1 );
+	    mySet.add( fruit2 );
+	    mySet.add( fruit3 );
+	    mySet.add( fruit4 );
+	    mySet.add( fruit5 );
+
+
+	    System.out.println( "mySet now contains:" );
+	    System.out.println( mySet );
+
+		// the number of elements in) mySet;
+	    
+	    System.out.println( "number of elements in mySet:" );
+	    System.out.println( mySet.size() );
+	    
+	    //remove the blackberry and strawberry;
+
+		mySet.remove( fruit4);
+		mySet.remove( fruit5);
+
+	    System.out.println( "blackberry and strawberry removed. mySet now contains:" );
+	    System.out.println( mySet );
+		
+		
+	   //single method invocation; 
+	    
+	    mySet.clear();
+                        
+             //set is now empty by using the isEmpty() method.
+		if(mySet.isEmpty())
+	      System.out.println( "mySet is now empty." );
+		else
+	       System.out.println( "mySet is not empty:" );
+
+	  }
+	}

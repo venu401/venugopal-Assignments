@@ -1,0 +1,44 @@
+
+
+	import java.util.Scanner;
+	
+
+	public class Exercise1 {
+		
+		static double Randomnum = 80;
+		static int count=0;
+		static int x;
+		public static void main(String[] args){
+			
+					
+			checkNum();
+			
+					
+		}
+		
+		public static void checkNum(){
+			
+			double num;
+		
+			Scanner scan = new Scanner(System.in);
+			
+			System.out.println("Guess a number (0-100) with in 5 attempts.\n");
+			num = scan.nextInt();
+			
+			if( Randomnum >=num-10 && Randomnum <= num+10){
+				System.out.println("Congrats! You have guessed the number correctly");
+			}else {
+				System.out.println(" False ,you can try one more time ");
+				count++;
+				if(count<5){
+					checkNum();
+				}else {
+					System.out.println("Sorry your number of attempts are over ");
+					
+				}
+			}
+			
+			
+		}
+		
+	}
